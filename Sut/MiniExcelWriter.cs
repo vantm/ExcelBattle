@@ -6,7 +6,7 @@ namespace ExcelBattle.Sut;
 
 public static class MiniExcelWriter
 {
-    public static void Write(TemplateData data, Stream outputStream)
+    public static void Write(TemplateData data, string path)
     {
         var templateData = new Dictionary<string, object>
         {
@@ -17,6 +17,6 @@ public static class MiniExcelWriter
             ["People"] = data.People
         };
 
-        outputStream.SaveAsByTemplate(Resources.MiniExcelExportTemplate, templateData);
+        MiniExcel.SaveAsByTemplate(path, Resources.MiniExcelExportTemplate, templateData);
     }
 }

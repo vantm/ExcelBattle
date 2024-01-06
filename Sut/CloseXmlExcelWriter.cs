@@ -6,7 +6,7 @@ namespace ExcelBattle.Sut;
 
 public static class CloseXmlExcelWriter
 {
-    public static void Write(TemplateData data, Stream outputStream)
+    public static void Write(TemplateData data, string path)
     {
         using var templateBuffer = new MemoryStream(Resources.ExportTemplate);
         using IXLWorkbook workbook = new XLWorkbook(templateBuffer);
@@ -84,6 +84,6 @@ public static class CloseXmlExcelWriter
             rowIndex++;
         }
 
-        workbook.SaveAs(outputStream, false);
+        workbook.SaveAs(path, false);
     }
 }

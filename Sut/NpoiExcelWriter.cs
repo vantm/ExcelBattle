@@ -7,7 +7,7 @@ namespace ExcelBattle.Sut;
 
 public static class NpoiExcelWriter
 {
-    public static void Write(TemplateData data, Stream outputStream)
+    public static void Write(TemplateData data, string path)
     {
         IWorkbook workbook;
 
@@ -88,6 +88,7 @@ public static class NpoiExcelWriter
             rowIndex++;
         }
 
-        workbook.Write(outputStream, leaveOpen: true);
+        using var stream = File.OpenWrite(path);
+        workbook.Write(stream, leaveOpen: true);
     }
 }

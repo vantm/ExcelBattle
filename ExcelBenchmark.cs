@@ -11,6 +11,9 @@ public class ExcelBenchmark
 
     [Params(10, 1000, 100000)] public int TotalRow { get; set; }
 
+    private const string TemplateDir = "D:\\tmp\\";
+
+    private static string GenerateOutputFileName() => $"{TemplateDir}\\{Guid.NewGuid()}.xlsx";
 
     [GlobalSetup]
     public void GlobalSetup()
@@ -28,22 +31,22 @@ public class ExcelBenchmark
     [Benchmark]
     public void UseNpoi()
     {
-        using var outputStream = new MemoryStream();
-        NpoiExcelWriter.Write(_data, outputStream);
+        var fileName = GenerateOutputFileName();
+        NpoiExcelWriter.Write(_data, fileName);
     }
 
     [Benchmark]
     public void UseCloseXML()
     {
-        using var outputStream = new MemoryStream();
-        CloseXmlExcelWriter.Write(_data, outputStream);
+        var fileName = GenerateOutputFileName();
+        CloseXmlExcelWriter.Write(_data, fileName);
     }
 
     [Benchmark]
     public void UseMiniExcel()
     {
-        using var outputStream = new MemoryStream();
-        MiniExcelWriter.Write(_data, outputStream);
+        var fileName = GenerateOutputFileName();
+        MiniExcelWriter.Write(_data, fileName);
     }
 
     public static void WriteSamples()
@@ -55,23 +58,8 @@ public class ExcelBenchmark
 
         sample.GlobalSetup();
 
-        {
-            using var outputStream = new MemoryStream();
-            NpoiExcelWriter.Write(sample._data, outputStream);
-            File.WriteAllBytes("D:\\tmp\\ExportWithCloseXML.xlsx", outputStream.ToArray());
-        }
-
-
-        {
-            using var outputStream = new MemoryStream();
-            CloseXmlExcelWriter.Write(sample._data, outputStream);
-            File.WriteAllBytes("D:\\tmp\\ExportWithNPOI.xlsx", outputStream.ToArray());
-        }
-
-        {
-            using var outputStream = new MemoryStream();
-            MiniExcelWriter.Write(sample._data, outputStream);
-            File.WriteAllBytes("D:\\tmp\\ExportWithMiniExcel.xlsx", outputStream.ToArray());
-        }
+        NpoiExcelWriter.Write(sample._data, $"{TemplateDir}\\ExportWithNpoi.xlsx");
+        CloseXmlExcelWriter.Write(sample._data, $"{TemplateDir}\\ExportWithCloseXML.xlsx");
+        MiniExcelWriter.Write(sample._data, $"{TemplateDir}\\ExportWithMiniExcel.xlsx");
     }
 }
