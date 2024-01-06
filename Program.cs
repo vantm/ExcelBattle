@@ -1,5 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
 using ExcelBattle;
 
-//ExcelBenchmark.MakeSample();
+//ExcelBenchmark.WriteSamples();
 BenchmarkRunner.Run<ExcelBenchmark>();

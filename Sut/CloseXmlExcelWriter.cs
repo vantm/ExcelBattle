@@ -1,7 +1,8 @@
 ﻿using ClosedXML.Excel;
+using ExcelBattle.Models;
 using ExcelBattle.Properties;
 
-namespace ExcelBattle;
+namespace ExcelBattle.Sut;
 
 public static class CloseXmlExcelWriter
 {

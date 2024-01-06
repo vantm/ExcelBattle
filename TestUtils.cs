@@ -1,4 +1,6 @@
 ﻿using Bogus;
+using ExcelBattle.Models;
+using Person = ExcelBattle.Models.Person;
 
 namespace ExcelBattle;
 

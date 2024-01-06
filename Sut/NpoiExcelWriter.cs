@@ -1,8 +1,9 @@
-﻿using ExcelBattle.Properties;
+﻿using ExcelBattle.Models;
+using ExcelBattle.Properties;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
-namespace ExcelBattle;
+namespace ExcelBattle.Sut;
 
 public static class NpoiExcelWriter
 {

@@ -11,15 +11,8 @@
     <PackageReference Include="BenchmarkDotNet" Version="0.13.10" />
     <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="ClosedXML" Version="0.102.1" />
+    <PackageReference Include="MiniExcel" Version="1.31.3" />
     <PackageReference Include="NPOI" Version="2.6.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace ExcelBattle;
+﻿namespace ExcelBattle.Models;
 
 public sealed class TemplateData
 {

@@ -1,4 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
+using ExcelBattle.Models;
+using ExcelBattle.Sut;
 
 namespace ExcelBattle;
 
@@ -37,11 +39,18 @@ public class ExcelBenchmark
         CloseXmlExcelWriter.Write(_data, outputStream);
     }
 
-    public static void MakeSample()
+    [Benchmark]
+    public void UseMiniExcel()
+    {
+        using var outputStream = new MemoryStream();
+        MiniExcelWriter.Write(_data, outputStream);
+    }
+
+    public static void WriteSamples()
     {
         var sample = new ExcelBenchmark
         {
-            TotalRow = 1000
+            TotalRow = 100
         };
 
         sample.GlobalSetup();
@@ -57,6 +66,12 @@ public class ExcelBenchmark
             using var outputStream = new MemoryStream();
             CloseXmlExcelWriter.Write(sample._data, outputStream);
             File.WriteAllBytes("D:\\tmp\\ExportWithNPOI.xlsx", outputStream.ToArray());
+        }
+
+        {
+            using var outputStream = new MemoryStream();
+            MiniExcelWriter.Write(sample._data, outputStream);
+            File.WriteAllBytes("D:\\tmp\\ExportWithMiniExcel.xlsx", outputStream.ToArray());
         }
     }
 }
